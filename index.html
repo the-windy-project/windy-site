@@ -5,48 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Windy Project</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Optimized background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 143, 0, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
-            z-index: -1;
-            will-change: transform;
-        }
-
-        /* Consistent spacing variables */
         :root {
+            --primary-blue: #4F7BFF;
+            --blue-gray: #0F0A2B;
+            --dark-navy: #0A0A1A;
+            --light-gray: #F8F9FA;
+            --medium-gray: #9DA3B4;
+            --dark-gray: #030014;
+            --accent-purple: #6366F1;
             --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 1.5rem;
             --spacing-lg: 2rem;
             --spacing-xl: 3rem;
             --spacing-xxl: 4rem;
+            --border-radius: 24px;
+            --border-radius-sm: 16px;
         }
 
-        /* Optimized particles with reduced count */
-        .particles {
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--blue-gray) 50%, var(--dark-gray) 100%);
+            color: var(--light-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated background elements */
+        .bg-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -54,31 +49,51 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            overflow: hidden;
         }
 
-        .particle {
+        .floating-circle {
             position: absolute;
-            width: 1px;
-            height: 1px;
-            background: rgba(255, 193, 7, 0.4);
             border-radius: 50%;
-            will-change: transform, opacity;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+            bottom: -300px;
+            right: -300px;
+            animation-delay: -10s;
+        }
+
+        .circle-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary-blue) 0%, transparent 60%);
+            top: 50%;
+            right: -150px;
+            animation-delay: -5s;
         }
 
         @keyframes float {
-            0% {
-                transform: translate3d(0, 100vh, 0);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate3d(50px, -10vh, 0);
-                opacity: 0;
-            }
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            25% { transform: translate3d(30px, -30px, 0) scale(1.1); }
+            50% { transform: translate3d(-20px, -60px, 0) scale(0.9); }
+            75% { transform: translate3d(-30px, -30px, 0) scale(1.05); }
         }
 
+        /* Hero Section */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -93,45 +108,68 @@
         .hero-content {
             max-width: 800px;
             width: 100%;
+            animation: fadeInUp 1s ease-out;
         }
 
         .logo {
-            font-size: 4rem;
+            font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 700;
-            color: #FFC107;
+            color: var(--light-gray);
             margin-bottom: var(--spacing-lg);
-            text-shadow: 0 0 20px rgba(255, 193, 7, 0.4);
             letter-spacing: -0.02em;
+            position: relative;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .description {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             margin-bottom: var(--spacing-xl);
-            color: #b0b0b0;
+            color: var(--medium-gray);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #FFC107 0%, #FF8F00 100%);
-            color: #1a1a1a;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-purple) 100%);
+            color: white;
             border: none;
-            padding: var(--spacing-sm) var(--spacing-xl);
-            font-size: 1.1rem;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 1rem;
             font-weight: 600;
-            border-radius: 50px;
+            border-radius: var(--border-radius-sm);
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            will-change: transform, box-shadow;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: none;
+            letter-spacing: 0;
+            box-shadow: 0 8px 32px rgba(79, 123, 255, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 12px 48px rgba(79, 123, 255, 0.4);
         }
 
         .cta-button:active {
@@ -140,85 +178,122 @@
 
         .scroll-indicator {
             position: absolute;
-            bottom: var(--spacing-lg);
+            bottom: var(--spacing-xl);
             left: 50%;
             transform: translateX(-50%);
-            color: #FFC107;
-            font-size: 2rem;
-            animation: bounce 2s infinite;
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 6px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+        .scroll-indicator::after {
+            content: '';
+            width: 4px;
+            height: 8px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+            animation: scroll 2s infinite;
         }
 
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(16px); opacity: 0; }
+        }
+
+        /* Games Section */
         .games-section {
             padding: var(--spacing-xxl) var(--spacing-lg);
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             margin-bottom: var(--spacing-xxl);
-            color: #FFC107;
-            text-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+            color: var(--light-gray);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+            border-radius: 2px;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: var(--spacing-xl);
             justify-items: center;
         }
 
-        /* Optimized game cards */
         .game-card {
-            background: rgba(20, 20, 20, 0.85);
-            border-radius: 20px;
-            padding: var(--spacing-lg);
+            background: rgba(15, 10, 43, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(79, 123, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 0;
             cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            border: 1px solid rgba(255, 193, 7, 0.2);
-            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             color: inherit;
             display: block;
             width: 100%;
-            max-width: 350px;
-            will-change: transform, box-shadow;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            max-width: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 123, 255, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
         }
 
         .game-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(79, 123, 255, 0.3);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 20px rgba(255, 193, 7, 0.15);
-            border-color: rgba(255, 193, 7, 0.3);
+                0 32px 64px rgba(0, 0, 0, 0.4),
+                0 0 48px rgba(79, 123, 255, 0.2);
         }
 
         .game-image {
             width: 100%;
             height: 280px;
-            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-            border-radius: 15px;
-            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--medium-gray);
             background-size: cover;
             background-position: center;
             position: relative;
@@ -232,53 +307,84 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.2s ease;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 10, 43, 0.8) 100%);
+            z-index: 2;
         }
 
-        .game-card:hover .game-image::after {
-            opacity: 1;
+        .game-content {
+            padding: var(--spacing-lg);
+            position: relative;
+            z-index: 3;
         }
 
         .game-title {
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: var(--spacing-sm);
-            color: #FFC107;
+            color: var(--light-gray);
+            transition: color 0.3s ease;
+        }
+
+        .game-card:hover .game-title {
+            color: var(--primary-blue);
         }
 
         .game-description {
-            color: #b0b0b0;
+            color: var(--medium-gray);
             font-size: 0.95rem;
             line-height: 1.6;
+            font-weight: 400;
         }
 
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
             }
-            
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Intersection Observer Classes */
+        .observe {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .observe.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
             .games-grid {
                 grid-template-columns: 1fr;
                 gap: var(--spacing-lg);
             }
             
-            .section-title {
-                font-size: 2rem;
-            }
-
             .game-image {
-                height: 240px;
+                height: 220px;
             }
 
             .games-section {
-                padding: var(--spacing-xl) var(--spacing-sm);
+                padding: var(--spacing-xl) var(--spacing-md);
             }
 
             .hero-section {
-                padding: var(--spacing-sm);
+                padding: var(--spacing-md);
+            }
+
+            .scroll-indicator {
+                bottom: var(--spacing-lg);
             }
         }
 
@@ -287,30 +393,24 @@
                 height: 200px;
             }
             
-            .game-card {
+            .game-content {
                 padding: var(--spacing-md);
             }
 
-            .logo {
-                font-size: 2rem;
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
             }
 
-            .description {
-                font-size: 1rem;
+            .games-section {
+                padding: var(--spacing-lg) var(--spacing-sm);
             }
         }
 
-        /* Performance optimizations */
-        .game-card,
-        .cta-button,
-        .particle {
-            transform: translateZ(0);
-        }
-
-        /* Reduce motion for users who prefer it */
+        /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
-            .particle,
-            .scroll-indicator {
+            .floating-circle,
+            .scroll-indicator::after {
                 animation: none;
             }
             
@@ -321,12 +421,33 @@
             .cta-button:hover {
                 transform: none;
             }
+
+            .observe {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .game-card {
+                border-color: var(--light-gray);
+            }
+            
+            .cta-button {
+                border: 2px solid var(--light-gray);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Optimized particles -->
-    <div class="particles"></div>
+    <!-- Animated background elements -->
+    <div class="bg-elements">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+        <div class="floating-circle circle-3"></div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
@@ -336,95 +457,122 @@
                 Discover an extraordinary collection of immersive gaming experiences. 
                 From atmospheric adventures to thrilling narratives, explore worlds that captivate and inspire.
             </p>
-            <button class="cta-button" onclick="scrollToGames()">Explore Games</button>
+            <button class="cta-button" onclick="scrollToGames()" aria-label="Explore our games">
+                Explore Games
+            </button>
         </div>
-        <div class="scroll-indicator">↓</div>
+        <div class="scroll-indicator" aria-hidden="true"></div>
     </section>
 
     <!-- Games Section -->
     <section class="games-section" id="games">
-        <h2 class="section-title">Our Games</h2>
+        <h2 class="section-title observe">Our Games</h2>
         <div class="games-grid">
-            <a href="https://thewindyproject.itch.io/vacant" target="_blank" class="game-card">
-                <div class="game-image" style="background-image: url('images/vacant-cover.jpg')">Vacant Cover</div>
-                <h3 class="game-title">Vacant</h3>
-                <p class="game-description">
-                    A haunting exploration of abandoned spaces where memories linger. 
-                    Navigate through empty rooms and discover the stories left behind by those who once called this place home.
-                </p>
+            <a href="https://thewindyproject.itch.io/vacant" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Vacant">
+                <div class="game-image" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 280%22><rect width=%22400%22 height=%22280%22 fill=%22%231a1a2e%22/><text x=%22200%22 y=%22140%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 fill=%22%239DA3B4%22 font-family=%22Inter, sans-serif%22 font-size=%2216%22>Vacant Cover</text></svg>')"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Vacant</h3>
+                    <p class="game-description">
+                        A haunting exploration of abandoned spaces where memories linger. 
+                        Navigate through empty rooms and discover the stories left behind by those who once called this place home.
+                    </p>
+                </div>
             </a>
 
-            <a href="https://thewindyproject.itch.io/death-train" target="_blank" class="game-card">
-                <div class="game-image" style="background-image: url('images/deathtrain-cover.jpg')">Death Train Cover</div>
-                <h3 class="game-title">Death Train</h3>
-                <p class="game-description">
-                    Board a mysterious locomotive on a journey through the unknown. 
-                    Uncover dark secrets as you travel through landscapes that blur the line between life and death.
-                </p>
+            <a href="https://thewindyproject.itch.io/death-train" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Death Train">
+                <div class="game-image" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 280%22><rect width=%22400%22 height=%22280%22 fill=%22%2316213e%22/><text x=%22200%22 y=%22140%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 fill=%22%239DA3B4%22 font-family=%22Inter, sans-serif%22 font-size=%2216%22>Death Train Cover</text></svg>')"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Death Train</h3>
+                    <p class="game-description">
+                        Board a mysterious locomotive on a journey through the unknown. 
+                        Uncover dark secrets as you travel through landscapes that blur the line between life and death.
+                    </p>
+                </div>
             </a>
         </div>
     </section>
 
     <script>
-        // Optimized particle creation with reduced count
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            const numberOfParticles = 8; // Reduced from 15
-
-            for (let i = 0; i < numberOfParticles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animation = `float ${15 + Math.random() * 5}s linear infinite`;
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
+        // Smooth scrolling function
         function scrollToGames() {
-            document.getElementById('games').scrollIntoView({
-                behavior: 'smooth'
+            const gamesSection = document.getElementById('games');
+            gamesSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         }
 
-        // Optimized scroll handler with throttling
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observeElements = document.querySelectorAll('.observe');
+            observeElements.forEach((el, index) => {
+                // Stagger animations
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+        });
+
+        // Optimized parallax effect for hero section
         let ticking = false;
         
         function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero-section');
-            const speed = scrolled * 0.2;
-            
-            if (parallax) {
-                parallax.style.transform = `translate3d(0, ${speed}px, 0)`;
-                parallax.style.opacity = Math.max(0.3, 1 - (scrolled / window.innerHeight) * 0.4);
+            if (window.innerWidth > 768) { // Only on desktop
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.hero-section');
+                const speed = scrolled * 0.15;
+                
+                if (parallax && scrolled < window.innerHeight) {
+                    parallax.style.transform = `translate3d(0, ${speed}px, 0)`;
+                    parallax.style.opacity = Math.max(0.2, 1 - (scrolled / window.innerHeight) * 0.6);
+                }
             }
             ticking = false;
         }
 
-        window.addEventListener('scroll', () => {
+        // Throttled scroll listener
+        function handleScroll() {
             if (!ticking) {
                 requestAnimationFrame(updateParallax);
                 ticking = true;
             }
-        }, { passive: true });
+        }
 
-        // Initialize particles when page loads
-        window.addEventListener('load', () => {
-            createParticles();
-        });
+        // Only add scroll listener if user hasn't requested reduced motion
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        }
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for all anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
+        });
+
+        // Add loading state management
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
         });
     </script>
 </body>
