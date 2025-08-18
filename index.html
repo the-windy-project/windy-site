@@ -13,10 +13,76 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #0a0a0a;
             color: #e0e0e0;
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 143, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+            z-index: -2;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-10px) translateY(-10px);
+            }
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 193, 7, 0.3);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px);
+                opacity: 0;
+            }
         }
 
         .hero-section {
@@ -28,17 +94,24 @@
             text-align: center;
             padding: 2rem;
             position: relative;
+            z-index: 1;
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo {
@@ -46,10 +119,27 @@
             font-weight: 700;
             color: #FFC107;
             margin-bottom: 2rem;
-            text-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
+            text-shadow: 
+                0 0 20px rgba(255, 193, 7, 0.5),
+                0 0 40px rgba(255, 193, 7, 0.3),
+                0 0 60px rgba(255, 193, 7, 0.2);
             letter-spacing: -0.02em;
-            position: relative;
-            z-index: 1;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 
+                    0 0 20px rgba(255, 193, 7, 0.5),
+                    0 0 40px rgba(255, 193, 7, 0.3),
+                    0 0 60px rgba(255, 193, 7, 0.2);
+            }
+            100% {
+                text-shadow: 
+                    0 0 25px rgba(255, 193, 7, 0.7),
+                    0 0 50px rgba(255, 193, 7, 0.4),
+                    0 0 75px rgba(255, 193, 7, 0.3);
+            }
         }
 
         .description {
@@ -57,8 +147,7 @@
             max-width: 600px;
             margin-bottom: 3rem;
             color: #b0b0b0;
-            position: relative;
-            z-index: 1;
+            animation: fadeInUp 1.5s ease-out 0.3s both;
         }
 
         .cta-button {
@@ -70,109 +159,41 @@
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
-            position: relative;
-            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 8px 25px rgba(255, 193, 7, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(255, 193, 7, 0.4);
-        }
-
-        .cta-button:active {
-            transform: translateY(0);
-        }
-
-        .games-section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #FFC107;
-            text-shadow: 0 2px 10px rgba(255, 193, 7, 0.3);
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .game-card {
-            background: rgba(45, 45, 45, 0.8);
-            border-radius: 20px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 193, 7, 0.1);
-            backdrop-filter: blur(10px);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .game-card:hover {
-            transform: translateY(-8px);
-            background: rgba(45, 45, 45, 0.9);
-            border-color: rgba(255, 193, 7, 0.3);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #333 0%, #444 100%);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: #888;
-            background-size: cover;
-            background-position: center;
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 1.5s ease-out 0.6s both;
         }
 
-        .game-image::before {
+        .cta-button::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
 
-        .game-card:hover .game-image::before {
-            opacity: 1;
+        .cta-button:hover::before {
+            left: 100%;
         }
 
-        .game-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            color: #FFC107;
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(255, 193, 7, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        .game-description {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .cta-button:active {
+            transform: translateY(-1px) scale(1.02);
         }
 
         .scroll-indicator {
@@ -182,7 +203,8 @@
             transform: translateX(-50%);
             color: #FFC107;
             font-size: 2rem;
-            animation: bounce 2s infinite;
+            animation: bounce 2s infinite, fadeInUp 1.5s ease-out 0.9s both;
+            filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.5));
         }
 
         @keyframes bounce {
@@ -190,11 +212,167 @@
                 transform: translateX(-50%) translateY(0);
             }
             40% {
-                transform: translateX(-50%) translateY(-10px);
+                transform: translateX(-50%) translateY(-15px);
             }
             60% {
-                transform: translateX(-50%) translateY(-5px);
+                transform: translateX(-50%) translateY(-7px);
             }
+        }
+
+        .games-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            color: #FFC107;
+            text-shadow: 
+                0 0 20px rgba(255, 193, 7, 0.4),
+                0 0 40px rgba(255, 193, 7, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+            justify-items: center;
+        }
+
+        .game-card {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            backdrop-filter: blur(15px);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 1px 8px rgba(255, 193, 7, 0.1);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(25, 25, 25, 0.95);
+            border-color: rgba(255, 193, 7, 0.4);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 193, 7, 0.2),
+                inset 0 1px 0 rgba(255, 193, 7, 0.1);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #666;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .game-card:hover .game-image {
+            transform: scale(1.05);
+        }
+
+        .game-card:hover .game-image::after {
+            opacity: 1;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #FFC107;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .game-card:hover .game-title {
+            color: #FFD54F;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .game-description {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .game-card:hover .game-description {
+            color: #d0d0d0;
+        }
+
+        /* Staggered animation for game cards */
+        .game-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .game-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .game-card:nth-child(3) {
+            animation-delay: 0.6s;
         }
 
         @media (max-width: 768px) {
@@ -204,24 +382,48 @@
             
             .games-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
+                padding: 0 1rem;
             }
             
             .section-title {
                 font-size: 2rem;
             }
+
+            .game-image {
+                height: 250px;
+            }
+
+            .games-section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .game-image {
+                height: 200px;
+            }
+            
+            .game-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
-        <h1 class="logo">The Windy Project</h1>
-        <p class="description">
-            Discover an extraordinary collection of immersive gaming experiences. 
-            From atmospheric adventures to thrilling narratives, explore worlds that captivate and inspire.
-        </p>
-        <button class="cta-button" onclick="scrollToGames()">Explore Games</button>
+        <div class="hero-content">
+            <h1 class="logo">The Windy Project</h1>
+            <p class="description">
+                Discover an extraordinary collection of immersive gaming experiences. 
+                From atmospheric adventures to thrilling narratives, explore worlds that captivate and inspire.
+            </p>
+            <button class="cta-button" onclick="scrollToGames()">Explore Games</button>
+        </div>
         <div class="scroll-indicator">↓</div>
     </section>
 
@@ -230,7 +432,7 @@
         <h2 class="section-title">Our Games</h2>
         <div class="games-grid">
             <a href="https://thewindyproject.itch.io/vacant" target="_blank" class="game-card">
-                <div class="game-image" style="background-image: url('images/vacant-cover.jpg')"></div>
+                <div class="game-image" style="background-image: url('images/vacant-cover.jpg')">Vacant Cover</div>
                 <h3 class="game-title">Vacant</h3>
                 <p class="game-description">
                     A haunting exploration of abandoned spaces where memories linger. 
@@ -239,7 +441,7 @@
             </a>
 
             <a href="https://thewindyproject.itch.io/death-train" target="_blank" class="game-card">
-                <div class="game-image" style="background-image: url('images/deathtrain-cover.jpg')"></div>
+                <div class="game-image" style="background-image: url('images/deathtrain-cover.jpg')">Death Train Cover</div>
                 <h3 class="game-title">Death Train</h3>
                 <p class="game-description">
                     Board a mysterious locomotive on a journey through the unknown. 
@@ -250,30 +452,83 @@
     </section>
 
     <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const numberOfParticles = 15;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
         function scrollToGames() {
             document.getElementById('games').scrollIntoView({
                 behavior: 'smooth'
             });
         }
 
-        // Add parallax effect on scroll
+        // Enhanced parallax effect
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const parallax = document.querySelector('.hero-section');
-            const speed = scrolled * 0.5;
-            parallax.style.transform = `translateY(${speed}px)`;
+            const speed = scrolled * 0.3;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+                parallax.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+            }
+
+            // Animate game cards on scroll
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.opacity = '1';
+                }
+            });
         });
 
-        // Add hover sound effect simulation
+        // Enhanced hover effects
         const gameCards = document.querySelectorAll('.game-card');
         gameCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-8px) scale(1.02)';
+                card.style.zIndex = '10';
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
+                card.style.zIndex = '1';
             });
+
+            // Add mouse move effect for subtle 3D tilt
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `translateY(-12px) scale(1.02) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        });
+
+        // Initialize particles when page loads
+        window.addEventListener('load', () => {
+            createParticles();
         });
 
         // Smooth scroll for anchor links
