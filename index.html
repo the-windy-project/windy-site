@@ -452,14 +452,15 @@
         .support-btn {
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-xs);
-            padding: var(--spacing-md) var(--spacing-lg);
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius-sm);
             color: var(--text-primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -472,7 +473,7 @@
         }
 
         .support-btn i {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .ko-fi { background: linear-gradient(135deg, #ff5f5f, #ff8a3d); }
@@ -626,15 +627,6 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .newsletter-form {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .newsletter-input {
-                min-width: auto;
-            }
         }
 
         /* Reduce motion for accessibility */
@@ -671,8 +663,8 @@
                 <a href="https://discord.gg/yourserver" target="_blank" class="social-link" aria-label="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter/X">
-                    <i class="fab fa-x-twitter"></i>
+                <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
                 </a>
                 <a href="https://youtube.com/@yourchannel" target="_blank" class="social-link" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
@@ -774,20 +766,6 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="section">
-        <h2 class="section-title observe">Stay in the Loop</h2>
-        <div class="support-content">
-            <p class="support-description observe">
-                Get notified about new releases, exclusive teasers, and development updates straight to your inbox.
-            </p>
-            <form class="newsletter-form observe" onsubmit="handleNewsletter(event)">
-                <input type="email" class="newsletter-input" placeholder="Enter your email..." required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 The Windy Project. All rights reserved.</p>
@@ -796,8 +774,8 @@
             <a href="https://discord.gg/yourserver" target="_blank" class="social-link" aria-label="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter/X">
-                <i class="fab fa-x-twitter"></i>
+            <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
             </a>
             <a href="https://youtube.com/@yourchannel" target="_blank" class="social-link" aria-label="YouTube">
                 <i class="fab fa-youtube"></i>
