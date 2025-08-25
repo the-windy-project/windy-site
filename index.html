@@ -140,15 +140,23 @@
             margin: 0 auto;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
-            text-decoration: none;
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .social-links {
@@ -335,11 +343,159 @@
         }
 
         /* Games Grid */
+        .game-category {
+            margin-bottom: var(--spacing-xxl);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            text-align: left;
+            background: rgba(139, 92, 246, 0.1);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--border-radius-sm);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .category-title i {
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+        }
+
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: var(--spacing-xl);
             justify-items: center;
+        }
+
+        .coming-soon-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .coming-soon-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0;
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .coming-soon-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--secondary-accent);
+            box-shadow: 
+                0 24px 48px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(6, 182, 212, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .coming-soon-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .static-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            animation: staticNoise 0.1s infinite;
+            z-index: 1;
+        }
+
+        .shadow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, transparent 20%, rgba(0, 0, 0, 0.8) 70%),
+                radial-gradient(circle at 70% 70%, transparent 30%, rgba(0, 0, 0, 0.6) 80%);
+            z-index: 2;
+        }
+
+        .coming-soon-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .static-icon {
+            font-size: 3rem;
+            color: var(--secondary-accent);
+            margin-bottom: var(--spacing-md);
+            animation: flicker 2s infinite alternate;
+        }
+
+        .coming-soon-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        @keyframes staticNoise {
+            0% { transform: translateY(0); }
+            10% { transform: translateY(-2px); }
+            20% { transform: translateY(1px); }
+            30% { transform: translateY(-1px); }
+            40% { transform: translateY(2px); }
+            50% { transform: translateY(-2px); }
+            60% { transform: translateY(1px); }
+            70% { transform: translateY(-1px); }
+            80% { transform: translateY(2px); }
+            90% { transform: translateY(-2px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .game-card {
@@ -627,6 +783,25 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .category-title {
+                font-size: 1.5rem;
+                padding: var(--spacing-sm) var(--spacing-md);
+                text-align: center;
+                justify-content: center;
+            }
+
+            .coming-soon-image {
+                height: 220px;
+            }
+
+            .static-icon {
+                font-size: 2.5rem;
+            }
+
+            .coming-soon-title {
+                font-size: 1.6rem;
+            }
         }
 
         /* Reduce motion for accessibility */
@@ -658,18 +833,22 @@
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav">
-            <a href="#hero" class="logo-text">The Windy Project</a>
+            <a href="#hero" class="logo-container">
+                <!-- Uncomment and add your PNG icon here -->
+                <img src="images/windy-logo.png" alt="The Windy Project Logo" class="logo-icon">
+                <span class="logo-text">The Windy Project</span>
+            </a>
             <div class="social-links">
-                <a href="https://discord.gg/8qmmn2bvk5" target="_blank" class="social-link" aria-label="Discord">
+                <a href="https://discord.gg/yourserver" target="_blank" class="social-link" aria-label="Discord">
                     <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://x.com/thewindyproject" target="_blank" class="social-link" aria-label="Twitter">
+                <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://youtube.com/@windyproject" target="_blank" class="social-link" aria-label="YouTube">
+                <a href="https://youtube.com/@yourchannel" target="_blank" class="social-link" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
-                <a href="https://ko-fi.com/thewindyproject" target="_blank" class="social-link" aria-label="Ko-fi">
+                <a href="https://ko-fi.com/yourhandle" target="_blank" class="social-link" aria-label="Ko-fi">
                     <i class="fas fa-coffee"></i>
                 </a>
             </div>
@@ -693,30 +872,61 @@
     <!-- Games Section -->
     <section class="section" id="games">
         <h2 class="section-title observe">Our Games</h2>
-        <div class="games-grid">
-            <a href="https://thewindyproject.itch.io/vacant" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Vacant">
-                <div class="game-image" style="background-image: url('images/vacant-cover.jpg')">
-                    <span>Game Cover</span>
-                </div>
-                <div class="game-content">
-                    <h3>Vacant</h3>
-                    <p class="game-description">
-                        On a long drive to the new city you had just moved into, you decided to get some rest on the way and stop at a roadside motel. Everything seems normal at first, until the host starts acting strange...
-                    </p>
-                </div>
-            </a>
+        
+        <!-- PSX Games -->
+        <div class="game-category observe">
+            <h3 class="category-title">
+                <i class="fas fa-gamepad"></i>
+                PSX Horror Collection
+            </h3>
+            <div class="games-grid">
+                <a href="https://thewindyproject.itch.io/vacant" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Vacant">
+                    <div class="game-image" style="background-image: url('images/vacant-cover.jpg')"></div>
+                    <div class="game-content">
+                        <h4 class="game-title">Vacant</h4>
+                        <p class="game-description">
+                            On a long drive to the new city you had just moved into, you decided to get some rest on the way and stop at a roadside motel. Everything seems normal at first, until the host starts acting strange...
+                        </p>
+                    </div>
+                </a>
 
-            <a href="https://thewindyproject.itch.io/death-train" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Death Train">
-                <div class="game-image" style="background-image: url('images/deathtrain-cover.jpg')">
-                    <span>Game Cover</span>
+                <a href="https://thewindyproject.itch.io/death-train" target="_blank" rel="noopener noreferrer" class="game-card observe" aria-label="Play Death Train">
+                    <div class="game-image" style="background-image: url('images/deathtrain-cover.jpg')"></div>
+                    <div class="game-content">
+                        <h4 class="game-title">Death Train</h4>
+                        <p class="game-description">
+                            You work as a janitor in a underground Metro station. A killer is on the loose. You have to run...
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Static Shadows Series -->
+        <div class="game-category observe">
+            <h3 class="category-title">
+                <i class="fas fa-eye"></i>
+                Static Shadows Series
+            </h3>
+            <div class="coming-soon-container">
+                <div class="coming-soon-card observe">
+                    <div class="coming-soon-image">
+                        <div class="static-effect"></div>
+                        <div class="shadow-overlay"></div>
+                        <div class="coming-soon-content">
+                            <i class="fas fa-tv static-icon"></i>
+                            <h4 class="coming-soon-title">Coming Soon</h4>
+                            <p class="coming-soon-subtitle">The shadows are watching...</p>
+                        </div>
+                    </div>
+                    <div class="game-content">
+                        <h4 class="game-title">Static Shadows</h4>
+                        <p class="game-description">
+                            A new horror experience is emerging from the darkness. Stay tuned for updates on this atmospheric series that will blur the line between reality and nightmare.
+                        </p>
+                    </div>
                 </div>
-                <div class="game-content">
-                    <p class="game-description">
-                        <h3>Death Train</h3>
-                        You work as a janitor in a underground Metro station. A killer is on the loose. You have to run...
-                    </p>
-                </div>
-            </a>
+            </div>
         </div>
     </section>
 
@@ -729,7 +939,7 @@
                     Your support helps us create more atmospheric horror experiences and share exclusive game teasers with our community. Every contribution fuels the darkness we craft.
                 </p>
                 <div class="support-buttons observe">
-                    <a href="https://ko-fi.com/thewindyproject" target="_blank" class="support-btn ko-fi">
+                    <a href="https://ko-fi.com/yourhandle" target="_blank" class="support-btn ko-fi">
                         <i class="fas fa-coffee"></i>
                         <span>Support on Ko-fi</span>
                     </a>
@@ -768,19 +978,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 The Windy Project. All rights reserved.</p>
+        <p>&copy; 2024 The Windy Project. All rights reserved.</p>
         <p>Crafting nightmares since the wind began to howl...</p>
         <div class="footer-social">
-            <a href="https://discord.gg/8qmmn2bvk5" target="_blank" class="social-link" aria-label="Discord">
+            <a href="https://discord.gg/yourserver" target="_blank" class="social-link" aria-label="Discord">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="https://twitter.com/thewindyproject" target="_blank" class="social-link" aria-label="Twitter">
+            <a href="https://twitter.com/yourhandle" target="_blank" class="social-link" aria-label="Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://youtube.com/@windyproject" target="_blank" class="social-link" aria-label="YouTube">
+            <a href="https://youtube.com/@yourchannel" target="_blank" class="social-link" aria-label="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
-            <a href="https://ko-fi.com/thewindyproject" target="_blank" class="social-link" aria-label="Ko-fi">
+            <a href="https://ko-fi.com/yourhandle" target="_blank" class="social-link" aria-label="Ko-fi">
                 <i class="fas fa-coffee"></i>
             </a>
         </div>
