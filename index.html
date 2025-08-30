@@ -393,81 +393,16 @@
             transform: scale(1.02);
         }
 
-        /* Carousel Container */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 80px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 0, 64, 0.3);
-            border-radius: var(--border-radius-sm);
-            overflow: hidden;
-            margin-bottom: var(--spacing-xl);
-            backdrop-filter: blur(15px);
-        }
-
-        .carousel-track {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            animation: scrollText 25s linear infinite;
-            white-space: nowrap;
-            width: max-content;
-        }
-
-        .carousel-content {
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        .carousel-item {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 var(--spacing-xl);
-            font-size: 1.2rem;
+        /* Static Shadows Subtitle */
+        .static-shadows-subtitle {
+            font-size: 1.3rem;
             font-weight: 600;
             color: var(--static-accent);
-            text-shadow: 0 0 20px var(--static-glow);
-            letter-spacing: 1px;
             text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .carousel-separator {
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            margin: 0 var(--spacing-lg);
-        }
-
-        @keyframes scrollText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Static effect overlay for carousel */
-        .static-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 1px,
-                    rgba(255, 0, 64, 0.05) 1px,
-                    rgba(255, 0, 64, 0.05) 2px
-                );
-            animation: staticLines 0.1s infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes staticLines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(2px); }
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-xl);
+            text-shadow: 0 0 20px var(--static-glow);
+            text-align: center;
         }
 
         /* Games Grid */
@@ -922,14 +857,9 @@
                 max-width: 400px;
             }
 
-            .carousel-item {
-                font-size: 1rem;
-                padding: 0 var(--spacing-md);
-            }
 
-            .carousel-container {
-                height: 60px;
-            }
+
+
         }
 
         /* Reduce motion for accessibility */
@@ -1010,28 +940,8 @@
                 <div class="static-shadows-content">
                     <img src="images/Static-Shadows-Logo.png" alt="Static Shadows Series Logo" class="static-shadows-logo">
                     
-                    <div class="carousel-container">
-                        <div class="static-overlay"></div>
-                        <div class="carousel-track">
-                            <div class="carousel-content">
-                                <div class="carousel-item">Based off real experiences</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Inspired by Fears to Fathom</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Revolutionary horror storytelling</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Coming soon to haunt your dreams</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Based off real experiences</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Inspired by Fears to Fathom</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Revolutionary horror storytelling</div>
-                                <div class="carousel-separator">•</div>
-                                <div class="carousel-item">Coming soon to haunt your dreams</div>
-                                <div class="carousel-separator">•</div>
-                            </div>
-                        </div>
+                    <div class="static-shadows-subtitle">
+                        Based off real experiences • Inspired by Fears to Fathom
                     </div>
 
                     <div class="coming-soon-container">
