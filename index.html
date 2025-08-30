@@ -18,6 +18,8 @@
         :root {
             --primary-accent: #8b5cf6;
             --secondary-accent: #06b6d4;
+            --static-accent: #ff0040;
+            --static-glow: rgba(255, 0, 64, 0.4);
             --dark-bg: #121212;
             --darker-bg: #0a0a0a;
             --card-bg: #1a1a1a;
@@ -342,6 +344,132 @@
             border-radius: 2px;
         }
 
+        /* Static Shadows Hero Section */
+        .static-shadows-hero {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, rgba(255, 0, 64, 0.05) 50%, var(--darker-bg) 100%);
+            border: 2px solid rgba(255, 0, 64, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xxl);
+            margin-bottom: var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 32px 64px rgba(0, 0, 0, 0.6),
+                0 0 100px var(--static-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .static-shadows-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 0, 64, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 64, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .static-shadows-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .static-shadows-logo {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin-bottom: var(--spacing-xl);
+            filter: drop-shadow(0 8px 32px var(--static-glow));
+            transition: all 0.3s ease;
+        }
+
+        .static-shadows-logo:hover {
+            filter: drop-shadow(0 12px 48px var(--static-glow)) brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 0, 64, 0.3);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            margin-bottom: var(--spacing-xl);
+            backdrop-filter: blur(15px);
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scrollText 25s linear infinite;
+            white-space: nowrap;
+            width: max-content;
+        }
+
+        .carousel-content {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .carousel-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 var(--spacing-xl);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--static-accent);
+            text-shadow: 0 0 20px var(--static-glow);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .carousel-separator {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 var(--spacing-lg);
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Static effect overlay for carousel */
+        .static-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 1px,
+                    rgba(255, 0, 64, 0.05) 1px,
+                    rgba(255, 0, 64, 0.05) 2px
+                );
+            animation: staticLines 0.1s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes staticLines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(2px); }
+        }
+
         /* Games Grid */
         .game-category {
             margin-bottom: var(--spacing-xxl);
@@ -382,7 +510,7 @@
 
         .coming-soon-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--static-accent);
             border-radius: var(--border-radius);
             padding: 0;
             display: block;
@@ -391,18 +519,25 @@
             overflow: hidden;
             position: relative;
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.02);
+                0 16px 48px rgba(0, 0, 0, 0.6),
+                0 0 60px var(--static-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulseGlow 3s ease-in-out infinite;
         }
 
         .coming-soon-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            border-color: var(--secondary-accent);
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--static-accent);
             box-shadow: 
-                0 24px 48px rgba(0, 0, 0, 0.6),
-                0 0 40px rgba(6, 182, 212, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 32px 80px rgba(0, 0, 0, 0.8),
+                0 0 80px var(--static-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 60px var(--static-glow), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+            50% { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 80px var(--static-glow), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
         }
 
         .coming-soon-image {
@@ -427,8 +562,8 @@
                     0deg,
                     transparent,
                     transparent 2px,
-                    rgba(255, 255, 255, 0.03) 2px,
-                    rgba(255, 255, 255, 0.03) 4px
+                    rgba(255, 0, 64, 0.1) 2px,
+                    rgba(255, 0, 64, 0.1) 4px
                 );
             animation: staticNoise 0.1s infinite;
             z-index: 1;
@@ -455,9 +590,10 @@
 
         .static-icon {
             font-size: 3rem;
-            color: var(--secondary-accent);
+            color: var(--static-accent);
             margin-bottom: var(--spacing-md);
             animation: flicker 2s infinite alternate;
+            text-shadow: 0 0 30px var(--static-glow);
         }
 
         .coming-soon-title {
@@ -466,10 +602,11 @@
             margin-bottom: var(--spacing-xs);
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--secondary-accent), var(--primary-accent));
+            background: linear-gradient(135deg, var(--static-accent), var(--primary-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px var(--static-glow);
         }
 
         .coming-soon-subtitle {
@@ -673,32 +810,6 @@
         }
 
         /* Newsletter Section */
-        .newsletter-form {
-            display: flex;
-            gap: var(--spacing-sm);
-            max-width: 500px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            min-width: 250px;
-            padding: var(--spacing-md);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-sm);
-            color: var(--text-primary);
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px var(--glow-color);
-        }
-
         .newsletter-btn {
             padding: var(--spacing-md) var(--spacing-lg);
             background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
@@ -802,12 +913,32 @@
             .coming-soon-title {
                 font-size: 1.6rem;
             }
+
+            .static-shadows-hero {
+                padding: var(--spacing-lg);
+            }
+
+            .static-shadows-logo {
+                max-width: 400px;
+            }
+
+            .carousel-item {
+                font-size: 1rem;
+                padding: 0 var(--spacing-md);
+            }
+
+            .carousel-container {
+                height: 60px;
+            }
         }
 
         /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             .floating-circle,
-            .scroll-indicator::after {
+            .scroll-indicator::after,
+            .carousel-track,
+            .static-effect,
+            .static-overlay {
                 animation: none;
             }
             
@@ -873,6 +1004,59 @@
     <section class="section" id="games">
         <h2 class="section-title observe">Our Games</h2>
         
+        <!-- Static Shadows Series - FEATURED -->
+        <div class="game-category observe">
+            <div class="static-shadows-hero">
+                <div class="static-shadows-content">
+                    <img src="images/Static-Shadows-Logo.png" alt="Static Shadows Series Logo" class="static-shadows-logo">
+                    
+                    <div class="carousel-container">
+                        <div class="static-overlay"></div>
+                        <div class="carousel-track">
+                            <div class="carousel-content">
+                                <div class="carousel-item">Based off real experiences</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Inspired by Fears to Fathom</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Revolutionary horror storytelling</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Coming soon to haunt your dreams</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Based off real experiences</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Inspired by Fears to Fathom</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Revolutionary horror storytelling</div>
+                                <div class="carousel-separator">•</div>
+                                <div class="carousel-item">Coming soon to haunt your dreams</div>
+                                <div class="carousel-separator">•</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="coming-soon-container">
+                        <div class="coming-soon-card observe">
+                            <div class="coming-soon-image">
+                                <div class="static-effect"></div>
+                                <div class="shadow-overlay"></div>
+                                <div class="coming-soon-content">
+                                    <i class="fas fa-tv static-icon"></i>
+                                    <h4 class="coming-soon-title">Coming Soon</h4>
+                                    <p class="coming-soon-subtitle">The shadows are watching...</p>
+                                </div>
+                            </div>
+                            <div class="game-content">
+                                <h4 class="game-title">Static Shadows</h4>
+                                <p class="game-description">
+                                    A groundbreaking horror experience born from real events that will challenge everything you thought you knew about fear. Prepare for a journey into the unknown where reality blurs with nightmare.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- PSX Games -->
         <div class="game-category observe">
             <h3 class="category-title">
@@ -899,33 +1083,6 @@
                         </p>
                     </div>
                 </a>
-            </div>
-        </div>
-
-        <!-- Static Shadows Series -->
-        <div class="game-category observe">
-            <h3 class="category-title">
-                <i class="fas fa-eye"></i>
-                Static Shadows Series
-            </h3>
-            <div class="coming-soon-container">
-                <div class="coming-soon-card observe">
-                    <div class="coming-soon-image">
-                        <div class="static-effect"></div>
-                        <div class="shadow-overlay"></div>
-                        <div class="coming-soon-content">
-                            <i class="fas fa-tv static-icon"></i>
-                            <h4 class="coming-soon-title">Coming Soon</h4>
-                            <p class="coming-soon-subtitle">The shadows are watching...</p>
-                        </div>
-                    </div>
-                    <div class="game-content">
-                        <h4 class="game-title">Static Shadows</h4>
-                        <p class="game-description">
-                            A new horror experience is emerging from the darkness. Stay tuned for updates on this atmospheric series that will blur the line between reality and nightmare.
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1117,6 +1274,46 @@
                 konamiCode = [];
             }
         });
+
+        // Enhanced carousel pause on hover
+        const carousel = document.querySelector('.carousel-track');
+        const carouselContainer = document.querySelector('.carousel-container');
+        
+        if (carousel && carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+                carousel.style.animationPlayState = 'paused';
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                carousel.style.animationPlayState = 'running';
+            });
+        }
     </script>
 </body>
-</html>
+</html>form {
+            display: flex;
+            gap: var(--spacing-sm);
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            color: var(--text-primary);
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px var(--glow-color);
+        }
+
+        .newsletter-
