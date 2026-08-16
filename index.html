@@ -340,65 +340,6 @@
       margin-top: 30px;
     }
 
-    .featured-trailer {
-      display: grid;
-      grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
-      margin-top: 16px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-    }
-
-    .trailer-copy {
-      padding: clamp(24px, 4vw, 38px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .trailer-copy h3 {
-      margin-top: 8px;
-      font-size: clamp(1.45rem, 2.4vw, 2rem);
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-    }
-
-    .trailer-copy p {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .trailer-link {
-      margin-top: 20px;
-      color: var(--text);
-      font-size: 0.86rem;
-      font-weight: 650;
-      text-decoration: none;
-    }
-
-    .trailer-link:hover,
-    .trailer-link:focus-visible {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    .trailer-frame {
-      min-width: 0;
-      aspect-ratio: 16 / 9;
-      background: #050506;
-      border-left: 1px solid var(--line);
-    }
-
-    .trailer-frame iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
     .games-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -517,9 +458,8 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 70px;
-      align-items: start;
     }
 
     .about-copy {
@@ -535,131 +475,31 @@
       font-weight: 650;
     }
 
-    .support-panel {
-      display: grid;
-      gap: 12px;
-    }
-
-    .support-card {
-      position: relative;
-      overflow: hidden;
-      display: block;
-      min-height: 210px;
-      padding: 26px;
-      border: 1px solid #39393f;
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, #171719, #101012 70%);
-      color: var(--text);
-      text-decoration: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .support-card::after {
-      content: "↗";
-      position: absolute;
-      top: 24px;
-      right: 25px;
-      color: var(--subtle);
-      font-size: 1.25rem;
-      transition: transform 180ms ease, color 180ms ease;
-    }
-
-    .support-card:hover,
-    .support-card:focus-visible {
-      transform: translateY(-2px);
-      border-color: #5a5a62;
-      background: linear-gradient(145deg, #1a1a1d, #111113 70%);
-      outline: none;
-    }
-
-    .support-card:hover::after,
-    .support-card:focus-visible::after {
-      transform: translate(2px, -2px);
-      color: var(--text);
-    }
-
-    .support-label {
-      color: var(--subtle);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .support-card h3 {
-      margin-top: 23px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 0.95;
-      letter-spacing: -0.045em;
-    }
-
-    .support-card p {
-      max-width: 400px;
-      margin-top: 17px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .discord-note {
-      min-height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 0 17px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: var(--surface);
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.84rem;
-      transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
-    }
-
-    .discord-note:hover,
-    .discord-note:focus-visible {
-      color: var(--text);
-      border-color: var(--line-hover);
-      background: var(--surface-2);
-      outline: none;
-    }
-
-    .social-strip {
-      margin-top: 66px;
-      padding-top: 20px;
+    .link-list {
+      list-style: none;
       border-top: 1px solid var(--line);
+    }
+
+    .link-list li {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .link-list a {
+      min-height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-    }
-
-    .social-strip-label {
-      color: var(--subtle);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px 22px;
-    }
-
-    .social-links a {
+      gap: 12px;
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.86rem;
-      transition: color 160ms ease;
+      font-size: 0.9rem;
+      transition: color 160ms ease, padding 160ms ease;
     }
 
-    .social-links a:hover,
-    .social-links a:focus-visible {
+    .link-list a:hover,
+    .link-list a:focus-visible {
       color: var(--text);
+      padding-left: 5px;
     }
 
     footer {
@@ -708,17 +548,6 @@
         justify-self: start;
       }
 
-      .social-strip {
-        margin-top: 44px;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .social-links {
-        justify-content: flex-start;
-      }
-
       .featured-game {
         min-height: 520px;
       }
@@ -745,15 +574,6 @@
 
       .featured-logo {
         width: min(100%, 390px);
-      }
-
-      .featured-trailer {
-        grid-template-columns: 1fr;
-      }
-
-      .trailer-frame {
-        border-left: 0;
-        border-top: 1px solid var(--line);
       }
 
       .games-grid {
@@ -826,7 +646,7 @@
         <li><a href="#games">Games</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="https://store.steampowered.com/publisher/thewindyproject" target="_blank" rel="noopener noreferrer">Steam ↗</a></li>
-        <li><a href="https://ko-fi.com/thewindyproject" target="_blank" rel="noopener noreferrer">Ko-fi ↗</a></li>
+        <li><a href="https://thewindyproject.itch.io/" target="_blank" rel="noopener noreferrer">itch.io ↗</a></li>
       </ul>
     </nav>
   </header>
@@ -884,25 +704,6 @@
             </div>
           </div>
         </article>
-
-        <aside class="featured-trailer" aria-labelledby="trailer-title">
-          <div class="trailer-copy">
-            <div class="section-kicker">Featured trailer</div>
-            <h3 id="trailer-title">Watch on GameTrailers</h3>
-            <p>The official Bleach &amp; Blood trailer, featured by IGN's GameTrailers.</p>
-            <a class="trailer-link" href="https://www.youtube.com/watch?v=_aq25yhQyCM" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>
-          </div>
-          <div class="trailer-frame">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/_aq25yhQyCM?rel=0"
-              title="Bleach &amp; Blood trailer on IGN GameTrailers"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -984,39 +785,22 @@
     </section>
 
     <section class="section" id="about">
-      <div class="shell">
-        <div class="about-grid">
-          <div>
-            <div class="section-kicker">About</div>
-            <p class="about-copy">
-              <strong>The Windy Project</strong> is an independent horror game project established in 2022, focused on compact story-driven experiences, retro aesthetics and uncomfortable atmosphere.
-            </p>
-          </div>
-
-          <div class="support-panel" id="support">
-            <a class="support-card" href="https://ko-fi.com/thewindyproject" target="_blank" rel="noopener noreferrer">
-              <div class="support-label">Support development</div>
-              <h3>Ko-fi</h3>
-              <p>If you enjoy the games, Ko-fi is the best way to directly support future projects and development.</p>
-            </a>
-
-            <a class="discord-note" href="https://discord.gg/WfNxFTs6Xy" target="_blank" rel="noopener noreferrer">
-              <span>Updates, previews and community discussion on Discord</span>
-              <span>↗</span>
-            </a>
-          </div>
+      <div class="shell about-grid">
+        <div>
+          <div class="section-kicker">About</div>
+          <p class="about-copy">
+            <strong>The Windy Project</strong> is an independent horror game project established in 2022, focused on compact story-driven experiences, retro aesthetics and uncomfortable atmosphere.
+          </p>
         </div>
 
-        <div class="social-strip" aria-label="Social media links">
-          <span class="social-strip-label">Elsewhere</span>
-          <div class="social-links">
-            <a href="https://www.youtube.com/@WindyProject" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
-            <a href="https://x.com/thewindyproject" target="_blank" rel="noopener noreferrer">X ↗</a>
-            <a href="https://tiktok.com/@thewindyproject" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
-            <a href="https://discord.gg/WfNxFTs6Xy" target="_blank" rel="noopener noreferrer">Discord ↗</a>
-            <a href="https://ko-fi.com/thewindyproject" target="_blank" rel="noopener noreferrer">Ko-fi ↗</a>
-          </div>
-        </div>
+        <ul class="link-list" aria-label="External links">
+          <li><a href="https://store.steampowered.com/publisher/thewindyproject" target="_blank" rel="noopener noreferrer"><span>Steam</span><span>↗</span></a></li>
+          <li><a href="https://thewindyproject.itch.io/" target="_blank" rel="noopener noreferrer"><span>itch.io</span><span>↗</span></a></li>
+          <li><a href="https://x.com/thewindyproject" target="_blank" rel="noopener noreferrer"><span>X / Twitter</span><span>↗</span></a></li>
+          <li><a href="https://youtube.com/@windyproject" target="_blank" rel="noopener noreferrer"><span>YouTube</span><span>↗</span></a></li>
+          <li><a href="https://discord.gg/8qmmn2bvk5" target="_blank" rel="noopener noreferrer"><span>Discord</span><span>↗</span></a></li>
+          <li><a href="https://ko-fi.com/thewindyproject" target="_blank" rel="noopener noreferrer"><span>Ko-fi</span><span>↗</span></a></li>
+        </ul>
       </div>
     </section>
   </main>
