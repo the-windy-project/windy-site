@@ -107,6 +107,18 @@
       color: var(--text);
     }
 
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
     .hero {
       min-height: 67vh;
       display: flex;
@@ -235,32 +247,57 @@
     .featured-game {
       position: relative;
       overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      min-height: 390px;
+      min-height: 440px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background:
-        radial-gradient(circle at 78% 34%, rgba(160, 18, 23, 0.18), transparent 30%),
-        linear-gradient(145deg, #141416, #0c0c0e 62%);
+      background: #0c0c0e;
+    }
+
+    /* Replace this file with the Bleach & Blood cover/background artwork. */
+    .featured-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 68% center;
+    }
+
+    .featured-game::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(8, 8, 9, 0.97) 0%,
+        rgba(8, 8, 9, 0.88) 36%,
+        rgba(8, 8, 9, 0.54) 64%,
+        rgba(8, 8, 9, 0.16) 100%
+      );
     }
 
     .featured-game::after {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       pointer-events: none;
-      opacity: 0.12;
+      opacity: 0.09;
       background-image:
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 34px 34px;
-      mask-image: linear-gradient(to right, transparent 20%, #000 100%);
+      mask-image: linear-gradient(to right, transparent 15%, #000 100%);
     }
 
     .featured-content {
       position: relative;
       z-index: 2;
+      width: min(720px, 68%);
+      min-height: 440px;
       padding: clamp(28px, 5vw, 58px);
       display: flex;
       flex-direction: column;
@@ -279,11 +316,14 @@
       text-transform: uppercase;
     }
 
-    .featured-game h3 {
-      margin-top: 20px;
-      font-size: clamp(2.65rem, 6vw, 5.3rem);
-      line-height: 0.93;
-      letter-spacing: -0.06em;
+    /* Transparent PNG title/logo, independent from the background artwork. */
+    .featured-logo {
+      display: block;
+      width: min(100%, 470px);
+      max-height: 170px;
+      margin-top: 22px;
+      object-fit: contain;
+      object-position: left center;
     }
 
     .featured-game p {
@@ -298,18 +338,6 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 30px;
-    }
-
-    .featured-mark {
-      position: relative;
-      min-height: 280px;
-      display: grid;
-      place-items: center;
-      color: rgba(255,255,255,0.045);
-      font-size: clamp(9rem, 23vw, 18rem);
-      font-weight: 800;
-      letter-spacing: -0.09em;
-      user-select: none;
     }
 
     .games-grid {
@@ -521,14 +549,31 @@
       }
 
       .featured-game {
-        grid-template-columns: 1fr;
+        min-height: 520px;
       }
 
-      .featured-mark {
-        min-height: 120px;
-        place-items: end center;
-        line-height: 0.65;
-        overflow: hidden;
+      .featured-bg {
+        object-position: center;
+      }
+
+      .featured-game::before {
+        background: linear-gradient(
+          to top,
+          rgba(8, 8, 9, 0.98) 0%,
+          rgba(8, 8, 9, 0.92) 38%,
+          rgba(8, 8, 9, 0.46) 72%,
+          rgba(8, 8, 9, 0.18) 100%
+        );
+      }
+
+      .featured-content {
+        width: 100%;
+        min-height: 520px;
+        justify-content: flex-end;
+      }
+
+      .featured-logo {
+        width: min(100%, 390px);
       }
 
       .games-grid {
@@ -626,15 +671,30 @@
         <div class="section-heading">
           <div>
             <div class="section-kicker">Current project</div>
-            <h2>Bleach &amp; Blood</h2>
+            <h2 class="sr-only">Bleach &amp; Blood</h2>
           </div>
           <p>A larger retro slasher horror game, currently in development for Steam.</p>
         </div>
 
         <article class="featured-game">
+          <!-- Bleach & Blood background artwork: replace this JPG without changing the HTML. -->
+          <img
+            class="featured-bg"
+            src="images/bleach-and-blood/cover-background.jpg"
+            alt=""
+            aria-hidden="true"
+          />
+
           <div class="featured-content">
             <span class="status">Upcoming · Steam · 2027</span>
-            <h3>Bleach<br />&amp; Blood</h3>
+
+            <!-- Transparent Bleach & Blood title/logo PNG. -->
+            <img
+              class="featured-logo"
+              src="images/bleach-and-blood/title-logo.png"
+              alt="Bleach &amp; Blood"
+            />
+
             <p>
               Survive the night shift at a small-town laundromat while a killer stalks the streets. Serve customers, wash clothes and piece together what is happening around you.
             </p>
@@ -643,7 +703,6 @@
               <a class="button" href="https://store.steampowered.com/publisher/thewindyproject" target="_blank" rel="noopener noreferrer">Developer page ↗</a>
             </div>
           </div>
-          <div class="featured-mark" aria-hidden="true">B&amp;B</div>
         </article>
       </div>
     </section>
