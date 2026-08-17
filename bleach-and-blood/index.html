@@ -1,1 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080809" />
 
+  <title>Bleach &amp; Blood | PS1-Style Slasher Horror Game | The Windy Project</title>
+  <meta name="description" content="Bleach & Blood is an upcoming PS1-style slasher horror game by The Windy Project. Survive night shifts at a small-town laundromat while a killer stalks the streets. Wishlist on Steam." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://thewindyproject.com/bleach-and-blood/" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Windy Project" />
+  <meta property="og:title" content="Bleach & Blood | PS1-Style Slasher Horror Game" />
+  <meta property="og:description" content="Survive the night shift at a small-town laundromat while a killer stalks the streets. An upcoming retro slasher horror game by The Windy Project." />
+  <meta property="og:url" content="https://thewindyproject.com/bleach-and-blood/" />
+  <meta property="og:image" content="https://thewindyproject.com/images/bleach-and-blood/cover-background.jpg" />
+  <meta property="og:image:alt" content="Bleach & Blood retro slasher horror game artwork" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bleach & Blood | PS1-Style Slasher Horror Game" />
+  <meta name="twitter:description" content="Upcoming retro slasher horror game by The Windy Project. Wishlist Bleach & Blood on Steam." />
+  <meta name="twitter:image" content="https://thewindyproject.com/images/bleach-and-blood/cover-background.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "@id": "https://thewindyproject.com/bleach-and-blood/#game",
+        "name": "Bleach & Blood",
+        "url": "https://thewindyproject.com/bleach-and-blood/",
+        "description": "Bleach & Blood is a retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.",
+        "image": "https://thewindyproject.com/images/bleach-and-blood/cover-background.jpg",
+        "gamePlatform": "Windows PC",
+        "genre": ["Horror", "Slasher", "Psychological Horror", "Retro Horror"],
+        "datePublished": "2027",
+        "author": { "@id": "https://thewindyproject.com/#organization" },
+        "publisher": { "@id": "https://thewindyproject.com/#organization" },
+        "sameAs": [
+          "https://store.steampowered.com/app/5042390/Bleach__Blood/",
+          "https://www.indiedb.com/games/bleach-blood",
+          "https://www.moddb.com/games/bleach-blood"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://thewindyproject.com/#organization",
+        "name": "The Windy Project",
+        "alternateName": "Windy",
+        "url": "https://thewindyproject.com/",
+        "logo": "https://thewindyproject.com/favicon.png",
+        "sameAs": [
+          "https://store.steampowered.com/publisher/thewindyproject/",
+          "https://thewindyproject.itch.io/",
+          "https://www.youtube.com/@WindyProject",
+          "https://x.com/thewindyproject"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "The Windy Project",
+            "item": "https://thewindyproject.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bleach & Blood",
+            "item": "https://thewindyproject.com/bleach-and-blood/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #080809;
+      --surface: #101012;
+      --surface-2: #151518;
+      --text: #f2f2f3;
+      --muted: #aaaab1;
+      --subtle: #717178;
+      --line: #252529;
+      --line-hover: #414147;
+      --accent: #d34a4a;
+      --max-width: 1120px;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .shell { width: min(calc(100% - 40px), var(--max-width)); margin-inline: auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 30;
+      border-bottom: 1px solid rgba(36,36,40,.85);
+      background: rgba(8,8,9,.86);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { text-decoration: none; font-size: .88rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-links { list-style: none; display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+
+    .hero {
+      position: relative; isolation: isolate; overflow: hidden;
+      min-height: 690px; display: flex; align-items: flex-end;
+      border-bottom: 1px solid var(--line);
+      background: #080809;
+    }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 68% center; z-index: -3; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(8,8,9,.30) 0%, rgba(8,8,9,.60) 62%, rgba(8,8,9,.98) 100%),
+        linear-gradient(90deg, rgba(8,8,9,.92) 0%, rgba(8,8,9,.66) 45%, rgba(8,8,9,.20) 100%);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .08; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 100% 4px;
+    }
+    .hero-content { width: min(790px, 76%); padding: 125px 0 72px; }
+    .crumbs { color: #b9b9bf; font-size: .78rem; margin-bottom: 22px; }
+    .crumbs a { text-decoration: none; color: #d6d6da; }
+    .kicker { color: #c5c5ca; font-size: .76rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+    .logo { width: min(100%, 590px); max-height: 190px; object-fit: contain; object-position: left center; margin-top: 19px; }
+    h1.sr-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+    .lede { margin-top: 22px; max-width: 700px; color: #d0d0d4; font-size: clamp(1.05rem,2vw,1.23rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button {
+      min-height: 46px; display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line-hover); border-radius: 10px; padding: 0 17px;
+      background: rgba(16,16,18,.9); text-decoration: none; font-size: .9rem; font-weight: 650;
+    }
+    .button.primary { background: var(--text); color: #09090a; border-color: var(--text); }
+    .button:hover, .button:focus-visible { transform: translateY(-1px); }
+
+    main > section { padding: 82px 0; border-bottom: 1px solid var(--line); }
+    .section-kicker { color: var(--subtle); font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h2 { margin-top: 8px; font-size: clamp(2rem,4vw,3.25rem); line-height: 1; letter-spacing: -.045em; }
+    .intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 70px; align-items: start; }
+    .copy { margin-top: 25px; color: #c7c7cc; font-size: 1.05rem; }
+    .copy p + p { margin-top: 18px; }
+    .facts { display: grid; gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
+    .fact { background: var(--surface); padding: 20px 22px; display: grid; grid-template-columns: 135px 1fr; gap: 20px; }
+    .fact dt { color: var(--subtle); font-size: .73rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; }
+    .fact dd { color: #d8d8dc; }
+    .fact a { text-underline-offset: 3px; }
+
+    .features { margin-top: 34px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .feature { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 23px; }
+    .feature h3 { font-size: 1.06rem; }
+    .feature p { color: var(--muted); font-size: .91rem; margin-top: 7px; }
+
+    .trailer { margin-top: 34px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #050506; }
+    .trailer-frame { aspect-ratio: 16/9; }
+    .trailer iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .trailer-caption { padding: 19px 21px; color: var(--muted); font-size: .88rem; display: flex; justify-content: space-between; gap: 20px; }
+    .trailer-caption a { color: var(--text); text-decoration: none; }
+
+    .cta { text-align: center; padding: 92px 20px; }
+    .cta p { max-width: 630px; margin: 18px auto 0; color: var(--muted); }
+    .cta .actions { justify-content: center; }
+    footer { padding: 28px 0 34px; color: var(--subtle); font-size: .78rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+    .footer-row a { color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 820px) {
+      .nav-links li:first-child { display: none; }
+      .hero { min-height: 610px; }
+      .hero-content { width: 100%; padding: 100px 0 55px; }
+      .hero-bg { object-position: center; }
+      .intro-grid { grid-template-columns: 1fr; gap: 38px; }
+      .features { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(calc(100% - 26px), var(--max-width)); }
+      .nav { min-height: 60px; }
+      .brand { font-size: .77rem; }
+      .nav-links { gap: 13px; }
+      .hero { min-height: 560px; }
+      main > section { padding: 66px 0; }
+      .fact { grid-template-columns: 1fr; gap: 6px; }
+      .trailer-caption { flex-direction: column; gap: 8px; }
+      .footer-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="/">The Windy Project</a>
+      <ul class="nav-links">
+        <li><a href="/#games">Games</a></li>
+        <li><a href="https://store.steampowered.com/app/5042390/Bleach__Blood/" target="_blank" rel="noopener noreferrer">Steam ↗</a></li>
+        <li><a href="https://ko-fi.com/thewindyproject" target="_blank" rel="noopener noreferrer">Ko-fi ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="game-title">
+      <img class="hero-bg" src="/images/bleach-and-blood/cover-background.jpg" alt="" aria-hidden="true" />
+      <div class="shell">
+        <div class="hero-content">
+          <div class="crumbs"><a href="/">The Windy Project</a> / Bleach &amp; Blood</div>
+          <div class="kicker">Upcoming · Windows PC · Steam · 2027</div>
+          <h1 class="sr-title" id="game-title">Bleach &amp; Blood - PS1-style slasher horror game</h1>
+          <img class="logo" src="/images/bleach-and-blood/title-logo.png" alt="Bleach &amp; Blood" />
+          <p class="lede">Bleach &amp; Blood is an upcoming retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.</p>
+          <div class="actions">
+            <a class="button primary" href="https://store.steampowered.com/app/5042390/Bleach__Blood/" target="_blank" rel="noopener noreferrer">Wishlist on Steam ↗</a>
+            <a class="button" href="#trailer">Watch trailer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-game-title">
+      <div class="shell intro-grid">
+        <div>
+          <div class="section-kicker">About the game</div>
+          <h2 id="about-game-title">Night shift horror in a quiet town</h2>
+          <div class="copy">
+            <p>Evelyn Miller moved to a quiet town to escape her past. Now she works nights at a laundromat, serving strange customers while unsettling events begin to unfold.</p>
+            <p>Take orders, wash clothes, explore the store and pass the time between customers. As suspicion falls on someone close to Evelyn, each shift becomes more dangerous.</p>
+          </div>
+
+          <div class="features" aria-label="Bleach & Blood features">
+            <article class="feature">
+              <h3>Retro PS1-inspired visuals</h3>
+              <p>Low-resolution, late-1990s-inspired horror presentation built around atmosphere and unease.</p>
+            </article>
+            <article class="feature">
+              <h3>Realistic job gameplay</h3>
+              <p>Serve customers, take orders and handle laundromat tasks throughout the night shift.</p>
+            </article>
+            <article class="feature">
+              <h3>Interactive environments</h3>
+              <p>Explore the laundromat and surrounding spaces as the story develops around Evelyn.</p>
+            </article>
+            <article class="feature">
+              <h3>Computer minigames</h3>
+              <p>Pass quieter moments of the shift with in-world computer activities before the night turns worse.</p>
+            </article>
+          </div>
+        </div>
+
+        <dl class="facts" aria-label="Game information">
+          <div class="fact"><dt>Title</dt><dd>Bleach &amp; Blood</dd></div>
+          <div class="fact"><dt>Developer</dt><dd><a href="/">The Windy Project</a></dd></div>
+          <div class="fact"><dt>Publisher</dt><dd>The Windy Project</dd></div>
+          <div class="fact"><dt>Genre</dt><dd>Retro slasher horror / psychological horror</dd></div>
+          <div class="fact"><dt>Platform</dt><dd>Windows PC</dd></div>
+          <div class="fact"><dt>Release</dt><dd>2027</dd></div>
+          <div class="fact"><dt>Store</dt><dd><a href="https://store.steampowered.com/app/5042390/Bleach__Blood/" target="_blank" rel="noopener noreferrer">Steam ↗</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="trailer" aria-labelledby="trailer-title">
+      <div class="shell">
+        <div class="section-kicker">Official trailer</div>
+        <h2 id="trailer-title">Bleach &amp; Blood announcement trailer</h2>
+        <div class="trailer">
+          <div class="trailer-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/_aq25yhQyCM?rel=0"
+              title="Bleach & Blood official announcement trailer on GameTrailers"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="trailer-caption">
+            <span>Official Bleach &amp; Blood trailer, featured by IGN's GameTrailers.</span>
+            <a href="https://www.youtube.com/watch?v=_aq25yhQyCM" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell cta">
+        <div class="section-kicker">Coming to Steam</div>
+        <h2>Wishlist Bleach &amp; Blood</h2>
+        <p>Follow the game on Steam for release updates and future news from The Windy Project.</p>
+        <div class="actions">
+          <a class="button primary" href="https://store.steampowered.com/app/5042390/Bleach__Blood/" target="_blank" rel="noopener noreferrer">Wishlist on Steam ↗</a>
+          <a class="button" href="/">More from The Windy Project</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-row">
+      <span>© <span id="year"></span> The Windy Project.</span>
+      <a href="/">thewindyproject.com</a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
