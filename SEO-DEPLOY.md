@@ -1,38 +1,33 @@
-# The Windy Project SEO deployment
+# Free GitHub Pages migration: Bleach & Blood
 
-## Files to upload
+## Proposed free site URL
 
-Place these at the root of the existing website repository:
+- Studio: https://the-windy-project.github.io/windy-site/
+- Game: https://the-windy-project.github.io/windy-site/bleach-and-blood/
+- Sitemap: https://the-windy-project.github.io/windy-site/sitemap.xml
 
-- `index.html` — replacement homepage
-- `robots.txt` — root crawl rules
-- `sitemap.xml` — root XML sitemap
-- `bleach-and-blood/index.html` — dedicated game page, producing `https://thewindyproject.com/bleach-and-blood/`
+These URL paths become usable only after this PR is merged and GitHub Pages is configured. No paid domain is required.
 
-The files reference the site's existing assets at:
+## Publish and detach expired domain
 
-- `/favicon.png`
-- `/images/hero/hero-background.gif`
-- `/images/bleach-and-blood/cover-background.jpg`
-- `/images/bleach-and-blood/title-logo.png`
-- existing `/images/games/...` files
+1. Merge the migration pull request into main.
+2. In the GitHub repository **Settings → Pages**, confirm publishing from main, /(root) (or preserve an existing working GitHub Pages publishing workflow). If disabled, select 'Deploy from a branch' and main /(root), then Save.
+3. In **Settings → Pages**, under **Custom domain**, use **Remove** to detach the old `thewindyproject.com` domain if it is still displayed. This is a required manual setting change; the CNAME deletion in this PR alone should not be assumed to remove the setting.
+4. Wait for Pages deployment and confirm both URLs above load in an incognito window, with working images, CSS and links. Do not publish the proposed links externally until these checks pass.
+5. Verify that the canonical, Open Graph, JSON-LD, and sitemap URLs all use https://the-windy-project.github.io/windy-site/ and never the expired paid domain.
 
-Do not remove those assets.
+## Search Console on the free site
 
-## After deployment
+1. Open https://search.google.com/search-console/ and add the **URL prefix** property `https://the-windy-project.github.io/windy-site/` (not a DNS-based Domain property; you do not own the shared `github.io` parent domain).
+2. Use **HTML file upload** verification. Obtain the exact verification HTML filename and content from Google, commit the file at this repository's root, and verify that it loads at `https://the-windy-project.github.io/windy-site/YOUR-GOOGLE-VERIFICATION-FILE.html` before clicking Verify. Alternatively use Google's HTML meta-tag verification in index.html.
+3. Submit `https://the-windy-project.github.io/windy-site/sitemap.xml` under Sitemaps.
+4. Use URL Inspection on `https://the-windy-project.github.io/windy-site/` and `https://the-windy-project.github.io/windy-site/bleach-and-blood/` and request indexing **once** after verifying that the URLs are crawlable.
+5. Run Google's Rich Results Test and Schema Markup Validator on the deployed game page. No tool guarantees a Google Knowledge Panel.
 
-1. Open `https://thewindyproject.com/bleach-and-blood/` in a private browser window and make sure it returns HTTP 200 and loads both Bleach & Blood images.
-2. Open `https://thewindyproject.com/robots.txt` and confirm the sitemap line is visible.
-3. Open `https://thewindyproject.com/sitemap.xml` and confirm both URLs are listed.
-4. In Google Search Console, add/verify the domain property for `thewindyproject.com` if it is not already verified.
-5. Submit `https://thewindyproject.com/sitemap.xml` in Search Console > Sitemaps.
-6. Use Search Console > URL Inspection on both:
-   - `https://thewindyproject.com/`
-   - `https://thewindyproject.com/bleach-and-blood/`
-7. Run **Test live URL**, then **Request indexing** for both pages.
-8. Test both pages with Google's Rich Results Test. The homepage contains Organization/WebSite JSON-LD; the game page contains VideoGame, Organization and BreadcrumbList JSON-LD. Do not add fake ratings, review counts or prices just to qualify for a richer result.
-9. Wherever you control a Bleach & Blood profile (Steam developer description, IndieDB/ModDB, itch.io, YouTube description, X profile/posts), prefer linking directly to `https://thewindyproject.com/bleach-and-blood/` when the link is specifically about the game. Keep `https://thewindyproject.com/` as the studio/home link.
+## Crawl rules note
 
-## Important
+GitHub Pages project sites live under `/windy-site/`. Crawlers check robots.txt at the **origin root**, not at the project-path robots.txt URL, so the repository's `/windy-site/robots.txt` is not an origin-level robots policy. Submit the sitemap explicitly in Search Console instead.
 
-A sitemap and indexing request improve discovery but do not guarantee immediate indexing or a specific ranking. The dedicated page is designed to give Google a strong first-party page with a unique title, descriptive text, internal links, canonical URL and structured data.
+## Authority/link updates
+
+Once the Pages deployment works, update first-party profiles that you control (Steam, itch.io, YouTube, IndieDB/ModDB, and relevant game-database external website fields) to point to the free game URL. Update broken domain references; do not claim that any unverified listings were changed. The legacy paid-domain URL can remain in historical articles, but it should not be advertised as the live official site.
