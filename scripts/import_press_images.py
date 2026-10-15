@@ -53,7 +53,76 @@ def run() -> None:
                 report.append({"name": name, "width": im.width, "height": im.height, "size_bytes": size, "drive_id": file_id})
                 print(f"  saved {im.width}x{im.height}, {size:,} bytes", flush=True)
     (DEST / "manifest.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(f"Imported {len(report)} optimized images.", flush=True)
+    # Publish gallery and sitemap only after every image has downloaded successfully.
+    press_page = ROOT / "bleach-and-blood" / "press" / "index.html"
+    page = press_page.read_text(encoding="utf-8")
+    start_marker = "<!-- PRESS_GALLERY_START -->"
+    end_marker = "<!-- PRESS_GALLERY_END -->"
+    base_url = "https://the-windy-project.github.io/windy-site/"
+    names = {
+        "bleach-and-blood-laundromat-night-art.webp": "Laundromat promotional background art",
+        "bleach-and-blood-killer-character.webp": "Masked killer full-body promotional art",
+        "bleach-and-blood-laundromat-wide-art.webp": "Wide official background artwork",
+        "bleach-and-blood-title-art.webp": "Bleach & Blood title art",
+        **{f"bleach-and-blood-screenshot-{i:02d}.webp": f"Bleach & Blood gameplay screenshot {i}" for i in range(1, 7)},
+        "bleach-and-blood-trailer-thumbnail.webp": "Bleach & Blood teaser trailer thumbnail",
+    }
+    cards = []
+    for item in report:
+        name = item["name"]
+        url = "/windy-site/images/bleach-and-blood/press/" + name
+        title = names[name]
+        cards.append(
+            '<figure class="asset">'
+            f'<a href="{url}" target="_blank" rel="noopener">'
+            f'<img src="{url}" alt="{title} — official imagery from The Windy Project" '
+            f'width="{item["width"]}" height="{item["height"]}" loading="lazy" '
+            'style="width:100%;aspect-ratio:16/9;object-fit:contain;background:#151518" /></a>'
+            f'<figcaption class="asset-body"><h3>{title}</h3>'
+            f'<p>Official website-hosted image · WebP · {item["width"]} × {item["height"]}</p>'
+            f'<a href="{url}" download>Open / download image ↗</a></figcaption></figure>'
+        )
+    gallery = (
+        '<section class="content" aria-labelledby="press-gallery-heading"><div class="shell">'
+        '<div class="label">Official image gallery</div><h2 id="press-gallery-heading">Screenshots &amp; promotional art</h2>'
+        '<p class="copy">Original-resolution files are in the press archive above; these website-hosted images '
+        'are optimized for fast browsing and search indexing.</p>'
+        '<div class="assets">' + "".join(cards) + '</div></div></section>'
+    )
+    if start_marker in page and end_marker in page:
+        a, tail = page.split(start_marker, 1)
+        _, b = tail.split(end_marker, 1)
+        page = a + start_marker + gallery + end_marker + b
+    else:
+        page = page.replace('</main>', start_marker + gallery + end_marker + '</main>')
+    press_page.write_text(page, encoding="utf-8")
+
+    from xml.etree import ElementTree as ET
+    sitemap_path = ROOT / "sitemap.xml"
+    ns = "http://www.sitemaps.org/schemas/sitemap/0.9"
+    ims = "http://www.google.com/schemas/sitemap-image/1.1"
+    ET.register_namespace("", ns)
+    ET.register_namespace("image", ims)
+    tree = ET.parse(sitemap_path)
+    urlset = tree.getroot()
+    press_url = base_url + "bleach-and-blood/press/"
+    press_entry = next((u for u in urlset if u.find(f"{{{ns}}}loc") is not None
+                        and u.find(f"{{{ns}}}loc").text == press_url), None)
+    if press_entry is None:
+        press_entry = ET.SubElement(urlset, f"{{{ns}}}url")
+        ET.SubElement(press_entry, f"{{{ns}}}loc").text = press_url
+    for old in list(press_entry):
+        if old.tag == f"{{{ims}}}image":
+            press_entry.remove(old)
+    for name in ["cover-background.jpg", "title-logo.png"]:
+        el = ET.SubElement(press_entry, f"{{{ims}}}image")
+        ET.SubElement(el, f"{{{ims}}}loc").text = base_url + "images/bleach-and-blood/" + name
+    for item in report:
+        el = ET.SubElement(press_entry, f"{{{ims}}}image")
+        ET.SubElement(el, f"{{{ims}}}loc").text = base_url + "images/bleach-and-blood/press/" + item["name"]
+    ET.indent(tree, space="  ")
+    tree.write(sitemap_path, encoding="unicode", xml_declaration=True)
+    print(f"Imported {len(report)} optimized images and updated gallery/sitemap.", flush=True)
 
 if __name__ == "__main__":
     run()
