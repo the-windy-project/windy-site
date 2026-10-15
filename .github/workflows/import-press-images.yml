@@ -1,0 +1,38 @@
+name: Import Bleach & Blood press images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/import_press_images.py"
+      - ".github/workflows/import-press-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  import-images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install media tools
+        run: python -m pip install --disable-pip-version-check "gdown==5.2.0" "Pillow>=11,<13"
+      - name: Download and optimize authorized press assets
+        run: python scripts/import_press_images.py
+      - name: Commit generated website assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/bleach-and-blood/press/
+          if git diff --cached --quiet; then
+            echo "Media already up to date."
+            exit 0
+          fi
+          git commit -m "Publish optimized Bleach & Blood press images"
+          git push
