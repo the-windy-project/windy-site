@@ -36,7 +36,7 @@
         "url": "https://the-windy-project.github.io/windy-site/bleach-and-blood/",
         "description": "Bleach & Blood is a retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.",
         "image": "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg",
-        "gamePlatform": "Windows PC",
+        "gamePlatform": ["Windows", "macOS", "Linux"],
         "genre": ["Horror", "Slasher", "Psychological Horror", "Retro Horror"],
         "identifier": [
           {"@type": "PropertyValue", "propertyID": "Steam App ID", "value": "5042390"},
@@ -257,7 +257,7 @@
       <div class="shell">
         <div class="hero-content">
           <div class="crumbs"><a href="/windy-site/">The Windy Project</a> / Bleach &amp; Blood</div>
-          <div class="kicker">Upcoming · Windows PC · Steam · 2027</div>
+          <div class="kicker">Free demo available · Windows, macOS &amp; Linux · 2027</div>
           <h1 class="sr-title" id="game-title">Bleach &amp; Blood - PS1-style slasher horror game</h1>
           <img class="logo" src="/windy-site/images/bleach-and-blood/title-logo.png" alt="Bleach &amp; Blood" />
           <p class="lede">Bleach &amp; Blood is an upcoming retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.</p>
@@ -272,9 +272,10 @@
 
     <section aria-labelledby="nextfest-campaign-title" style="background:#111014;border-block:1px solid #492525;padding:50px 0">
       <div class="shell" style="max-width:1000px;text-align:center">
-        <div class="section-kicker" style="color:#f18d8d">October 19–26, 2026 · Steam Next Fest</div>
+        <div class="section-kicker" id="festival-label" style="color:#f18d8d">Steam Next Fest · October 19–26, 2026</div>
         <h2 id="nextfest-campaign-title" style="margin:14px 0">Play the free Bleach &amp; Blood demo</h2>
         <p style="max-width:660px;margin:0 auto 24px;color:#c8c6ca">Step into a small-town laundromat after dark. Experience the opening chapter of our PS1-inspired slasher horror game, then wishlist the full release.</p>
+        <p style="margin:0 auto 24px;color:#c8c6ca">Free demo · English · Windows, macOS &amp; Linux<br><span id="festival-secondary">Steam Scream V follows October 26–November 2.</span></p>
         <div class="actions" style="justify-content:center">
           <a class="button primary" href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=festival_banner" target="_blank" rel="noopener noreferrer">Play demo &amp; wishlist on Steam ↗</a>
           <a class="button" href="/windy-site/bleach-and-blood/press/">Press &amp; creator media ↗</a>
@@ -317,11 +318,12 @@
           <div class="fact"><dt>Developer</dt><dd><a href="/windy-site/">The Windy Project</a></dd></div>
           <div class="fact"><dt>Publisher</dt><dd>The Windy Project</dd></div>
           <div class="fact"><dt>Genre</dt><dd>Retro slasher horror / psychological horror</dd></div>
-          <div class="fact"><dt>Platform</dt><dd>Windows PC</dd></div>
+          <div class="fact"><dt>Platforms</dt><dd>Windows, macOS &amp; Linux</dd></div>
           <div class="fact"><dt>Release</dt><dd>2027</dd></div>
           <div class="fact"><dt>Press kit</dt><dd><a href="/windy-site/bleach-and-blood/press/">Official press resources ↗</a></dd></div>
           <div class="fact"><dt>Store</dt><dd><a href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=game_page" target="_blank" rel="noopener noreferrer">Steam ↗</a></dd></div>
-          <div class="fact"><dt>Demo</dt><dd><a href="https://thewindyproject.itch.io/bleach-and-blood" target="_blank" rel="noopener noreferrer">itch.io ↗</a></dd></div>
+          <div class="fact"><dt>Free demo</dt><dd><a href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=demo_facts" target="_blank" rel="noopener noreferrer">Play on Steam ↗</a> · <a href="https://thewindyproject.itch.io/bleach-and-blood" target="_blank" rel="noopener noreferrer">itch.io download ↗</a></dd></div>
+          <div class="fact"><dt>Demo language</dt><dd>English</dd></div>
           <div class="fact"><dt>Game databases</dt><dd><a href="https://www.igdb.com/games/bleach-and-blood" target="_blank" rel="noopener noreferrer">IGDB ↗</a> · <a href="https://www.mobygames.com/game/270293/bleach-blood/" target="_blank" rel="noopener noreferrer">MobyGames ↗</a> · <a href="https://www.indiedb.com/games/bleach-blood" target="_blank" rel="noopener noreferrer">IndieDB ↗</a> · <a href="https://www.moddb.com/games/bleach-blood" target="_blank" rel="noopener noreferrer">ModDB ↗</a> · <a href="https://gamefaqs.gamespot.com/pc/693383-bleach-and-blood" target="_blank" rel="noopener noreferrer">GameFAQs ↗</a> · <a href="https://www.wikidata.org/wiki/Q141733409" target="_blank" rel="noopener noreferrer">Wikidata ↗</a></dd></div>
         </dl>
       </div>
@@ -384,5 +386,28 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+  (() => {
+    const now = Date.now();
+    const endNextFest = Date.parse('2026-10-26T17:00:00Z');
+    const endScream = Date.parse('2026-11-02T18:00:00Z');
+    const label = document.getElementById('festival-label');
+    if (now >= endNextFest && now < endScream) {
+      label.textContent = 'Steam Scream V · October 26–November 2, 2026';
+      document.getElementById('festival-secondary').textContent = 'Play the demo and wishlist the full game.';
+    }
+    if (now >= endScream) {
+      label.textContent = 'Free demo available on Steam';
+      document.getElementById('festival-secondary').textContent = 'Wishlist the full game for release updates.';
+    }
+    if (now >= endNextFest) {
+      document.querySelectorAll('a[href*="utm_campaign=nextfest_oct2026"]').forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('utm_campaign', now < endScream ? 'scream_oct2026' : 'evergreen_demo');
+        link.href = url.toString();
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
