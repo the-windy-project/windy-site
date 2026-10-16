@@ -32,7 +32,8 @@
         "name": "The Windy Project",
         "alternateName": "Windy",
         "url": "https://the-windy-project.github.io/windy-site/",
-        "logo": "https://the-windy-project.github.io/windy-site/favicon.png",
+        "logo": "https://the-windy-project.github.io/windy-site/images/windy-logo.png",
+        "image": "https://the-windy-project.github.io/windy-site/images/windy-logo.png",
         "description": "Independent developer of PSX-style and retro horror games.",
         "sameAs": [
           "https://store.steampowered.com/publisher/thewindyproject/",
@@ -128,12 +129,22 @@
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
       font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       white-space: nowrap;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -892,7 +903,7 @@
 <body>
   <header class="site-header">
     <nav class="nav shell" aria-label="Primary navigation">
-      <a class="brand" href="/windy-site/" aria-label="The Windy Project home">The Windy Project</a>
+      <a class="brand" href="/windy-site/" aria-label="The Windy Project home"><img class="brand-logo" src="/windy-site/images/windy-logo.png" alt="The Windy Project logo" width="34" height="34" decoding="async" />The Windy Project</a>
       <ul class="nav-links">
         <li><a href="/windy-site/#games">Games</a></li>
         <li><a href="/windy-site/#about">About</a></li>
