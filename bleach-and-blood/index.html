@@ -35,7 +35,15 @@
         "mainEntityOfPage": { "@id": "https://the-windy-project.github.io/windy-site/bleach-and-blood/#webpage" },
         "url": "https://the-windy-project.github.io/windy-site/bleach-and-blood/",
         "description": "Bleach & Blood is a retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.",
-        "image": "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg",
+        "image": [
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-01.webp",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-02.webp",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-03.webp",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-04.webp",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-05.webp",
+          "https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-06.webp"
+        ],
         "gamePlatform": ["Windows", "macOS", "Linux"],
         "genre": ["Horror", "Slasher", "Psychological Horror", "Retro Horror"],
         "identifier": [
@@ -206,6 +214,18 @@
     .trailer-caption { padding: 19px 21px; color: var(--muted); font-size: .88rem; display: flex; justify-content: space-between; gap: 20px; }
     .trailer-caption a { color: var(--text); text-decoration: none; }
 
+    .screenshots-lede { max-width: 730px; margin-top: 20px; color: var(--muted); font-size: 1.02rem; }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 31px; }
+    .screenshot-card { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .screenshot-card > a { display: block; overflow: hidden; background: #050506; }
+    .screenshot-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .2s ease, filter .2s ease; }
+    .screenshot-card > a:hover img, .screenshot-card > a:focus-visible img { transform: scale(1.025); filter: brightness(1.1); }
+    .screenshot-card > a:focus-visible { outline: 2px solid var(--text); outline-offset: -3px; }
+    .screenshot-card figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px 18px; color: #dadade; font-size: .88rem; }
+    .screenshot-card figcaption a { color: var(--muted); white-space: nowrap; text-underline-offset: 3px; }
+    .screenshots-more { margin-top: 25px; color: var(--muted); font-size: .92rem; }
+    @media (max-width: 650px) { .screenshots-grid { grid-template-columns: 1fr; gap: 15px; } }
+    @media (prefers-reduced-motion: reduce) { .screenshot-card img { transition: none; } }
     .coverage-list { margin-top: 26px; display: grid; gap: 14px; }
     .coverage-list a { display: block; text-decoration: none; color: var(--text); background: var(--surface); padding: 18px 22px; border: 1px solid var(--line); border-radius: 12px; }
     .coverage-list a:hover, .coverage-list a:focus-visible { border-color: var(--line-hover); }
@@ -244,6 +264,7 @@
       <a class="brand" href="/windy-site/">The Windy Project</a>
       <ul class="nav-links">
         <li><a href="/windy-site/#games">Games</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
         <li><a href="/windy-site/bleach-and-blood/demo/">Demo guide</a></li>
         <li><a href="/windy-site/bleach-and-blood/press/">Press kit</a></li>
         <li><a href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=game_page" target="_blank" rel="noopener noreferrer">Steam ↗</a></li>
@@ -264,6 +285,7 @@
           <p class="lede">Bleach &amp; Blood is an upcoming retro slasher horror game about surviving the night shift at a small-town laundromat while a killer stalks the streets.</p>
           <div class="actions">
             <a class="button primary" href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=game_page" target="_blank" rel="noopener noreferrer">Play free demo &amp; wishlist ↗</a>
+            <a class="button" href="#screenshots">View screenshots</a>
             <a class="button" href="#trailer">Watch trailer</a>
             <a class="button" href="/windy-site/bleach-and-blood/press/">Press kit &amp; media ↗</a>
           </div>
@@ -334,6 +356,54 @@
           <div class="fact"><dt>Demo information</dt><dd><a href="/windy-site/bleach-and-blood/demo/">Downloads, platforms &amp; FAQ ↗</a></dd></div>
           <div class="fact"><dt>Game databases</dt><dd><a href="https://www.igdb.com/games/bleach-and-blood" target="_blank" rel="noopener noreferrer">IGDB ↗</a> · <a href="https://www.mobygames.com/game/270293/bleach-blood/" target="_blank" rel="noopener noreferrer">MobyGames ↗</a> · <a href="https://www.indiedb.com/games/bleach-blood" target="_blank" rel="noopener noreferrer">IndieDB ↗</a> · <a href="https://www.moddb.com/games/bleach-blood" target="_blank" rel="noopener noreferrer">ModDB ↗</a> · <a href="https://gamefaqs.gamespot.com/pc/693383-bleach-and-blood" target="_blank" rel="noopener noreferrer">GameFAQs ↗</a> · <a href="https://www.wikidata.org/wiki/Q141733409" target="_blank" rel="noopener noreferrer">Wikidata ↗</a></dd></div>
         </dl>
+      </div>
+    </section>
+
+
+    <section id="screenshots" aria-labelledby="screenshots-title">
+      <div class="shell">
+        <div class="section-kicker">Official gameplay media</div>
+        <h2 id="screenshots-title">Bleach &amp; Blood screenshots</h2>
+        <p class="screenshots-lede">Explore six official gameplay screenshots from Bleach &amp; Blood, an upcoming PS1-inspired laundromat slasher horror game. Select any image to view it at its full 1920 × 1080 resolution.</p>
+        <div class="screenshots-grid">
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-01.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 1 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-01.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 1 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 01</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-01.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 1">Full size ↗</a></figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-02.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 2 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-02.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 2 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 02</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-02.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 2">Full size ↗</a></figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-03.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 3 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-03.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 3 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 03</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-03.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 3">Full size ↗</a></figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-04.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 4 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-04.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 4 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 04</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-04.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 4">Full size ↗</a></figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-05.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 5 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-05.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 5 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 05</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-05.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 5">Full size ↗</a></figcaption>
+          </figure>
+          <figure class="screenshot-card">
+            <a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-06.webp" target="_blank" rel="noopener noreferrer" aria-label="Open Bleach and Blood gameplay screenshot 6 at full resolution">
+              <img src="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-06.webp" alt="Bleach &amp; Blood official PS1-style horror game screenshot 6 of 6" width="1920" height="1080" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>Gameplay screenshot 06</span><a href="/windy-site/images/bleach-and-blood/press/bleach-and-blood-screenshot-06.webp" target="_blank" rel="noopener noreferrer" aria-label="View full-size screenshot 6">Full size ↗</a></figcaption>
+          </figure>
+        </div>
+        <p class="screenshots-more">For press usage, promotional artwork and downloadable assets, visit the <a href="/windy-site/bleach-and-blood/press/">official Bleach &amp; Blood press kit</a>.</p>
       </div>
     </section>
 
