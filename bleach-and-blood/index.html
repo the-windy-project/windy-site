@@ -280,6 +280,10 @@
           <a class="button primary" href="https://store.steampowered.com/app/5042390/Bleach__Blood/?utm_source=official_website&amp;utm_medium=website&amp;utm_campaign=nextfest_oct2026&amp;utm_content=festival_banner" target="_blank" rel="noopener noreferrer">Play demo &amp; wishlist on Steam ↗</a>
           <a class="button" href="/windy-site/bleach-and-blood/press/">Press &amp; creator media ↗</a>
         </div>
+        <aside id="creator-stream" aria-label="Upcoming demo stream" hidden style="margin:28px auto 0;padding-top:24px;border-top:1px solid #492525">
+          <p style="margin:0 0 14px;color:#c8c6ca"><strong>Planned demo stream · October 19</strong><br>SilverLarkGaming plans to play Bleach &amp; Blood during Monday's Twitch stream.</p>
+          <a class="button" href="https://www.twitch.tv/silverlarkgaming" target="_blank" rel="noopener noreferrer">Watch SilverLarkGaming on Twitch ↗</a>
+        </aside>
       </div>
     </section>
 
@@ -389,6 +393,7 @@
 <script>
   (() => {
     const now = Date.now();
+    document.getElementById('creator-stream').hidden = now >= Date.parse('2026-10-20T06:00:00Z');
     const endNextFest = Date.parse('2026-10-26T17:00:00Z');
     const endScream = Date.parse('2026-11-02T18:00:00Z');
     const label = document.getElementById('festival-label');
