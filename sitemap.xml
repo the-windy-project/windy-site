@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://the-windy-project.github.io/windy-site/bleach-and-blood/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <image:image>
       <image:loc>https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg</image:loc>
       <image:title>Bleach &amp; Blood - The Windy Project</image:title>
@@ -54,5 +54,15 @@
     <image:image>
       <image:loc>https://the-windy-project.github.io/windy-site/images/bleach-and-blood/press/bleach-and-blood-trailer-thumbnail.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://the-windy-project.github.io/windy-site/bleach-and-blood/demo/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image><image:loc>https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://the-windy-project.github.io/windy-site/bleach-and-blood/news/steam-festivals-october-2026/</loc>
+    <lastmod>2026-10-17</lastmod>
+    <image:image><image:loc>https://the-windy-project.github.io/windy-site/images/bleach-and-blood/cover-background.jpg</image:loc></image:image>
   </url>
 </urlset>
