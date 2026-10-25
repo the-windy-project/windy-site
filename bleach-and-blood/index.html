@@ -478,9 +478,14 @@
   (() => {
     const now = Date.now();
     document.getElementById('creator-stream').hidden = now >= Date.parse('2026-10-20T06:00:00Z');
+    const finalDayNextFest = Date.parse('2026-10-25T17:00:00Z');
     const endNextFest = Date.parse('2026-10-26T17:00:00Z');
     const endScream = Date.parse('2026-11-02T18:00:00Z');
     const label = document.getElementById('festival-label');
+    if (now >= finalDayNextFest && now < endNextFest) {
+      label.textContent = 'Steam Next Fest · Final 24 hours';
+      document.getElementById('festival-secondary').textContent = 'Play the free demo before the festival ends, then wishlist the full game.';
+    }
     if (now >= endNextFest && now < endScream) {
       label.textContent = 'Steam Scream V · October 26–November 2, 2026';
       document.getElementById('festival-secondary').textContent = 'Play the demo and wishlist the full game.';
